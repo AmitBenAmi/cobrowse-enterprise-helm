@@ -9,3 +9,8 @@ $ helm install cobrowse-enterprise
 ```
 
 Please see [the docs](https://docs.cobrowse.io/enterprise-self-hosting/helm) for more details.
+
+```
+helm package . -d packages
+az acr helm push --verbose -n acreastus packages/cobrowse-enterprise-*****.tgz
+```

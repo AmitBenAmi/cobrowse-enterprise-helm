@@ -1,3 +1,5 @@
+
+   
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
@@ -27,11 +29,11 @@ metadata:
   name: api-ingress
   namespace: {{ .Release.Namespace | default "default" }}
 spec:
-{{- if or (eq .Values.ssl.generator "cert-manager") .Values.ssl.tls.enabled }}
+{{- if eq .Values.ssl.generator "cert-manager" }}
   tls:
   - hosts:
     - {{ .Values.domain }}
-    secretName: {{ template "tlsSecretName" . }}
+    secretName: "tls-secret"
 {{- end }}
   rules:
   - host: {{ .Values.domain }}
